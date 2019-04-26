@@ -1,2 +1,2 @@
-# freshbooks-endpoints
+# freshbooks-endpoint
 Freshbooks endpoint
