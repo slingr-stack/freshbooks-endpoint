@@ -1,0 +1,216 @@
+{
+    "label": "Freshbooks",
+    "name": "freshbooks",
+    "apiVersion": "v1",
+    "internal": true,
+    "configurationType": "GLOBAL",
+    "deployment": {
+        "profiles":[
+            {
+                "name": "default",
+                "label": "Default",
+                "memory": 256,
+                "description": "Default configuration"
+            }
+        ],
+        "allowMultipleInstances": false
+    },
+    "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/freshbooks.png",
+    "status": "ACTIVE",
+    "stores": [],
+    "events": [],
+    "functions": [
+        {
+            "label": "Create client",
+            "name": "createClient",
+            "description": "Create a new client and return the corresponding client_id. If a password is not supplied, one will be created at random.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/clients#client.create"
+            ]
+        },
+        {
+            "label": "Update update",
+            "name": "updateClient",
+            "description": "Update the details of the client with the given client_id. Any fields not referenced in the request will remain unchanged.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/clients#client.update"
+            ]
+        },
+        {
+            "label": "Remove client",
+            "name": "removeClient",
+            "description": "Delete the client with the given client_id.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/clients#client.delete"
+            ]
+        },
+        {
+            "label": "Find client by id",
+            "name": "findClientById",
+            "description": "Return the client details associated with the given client_id.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/clients#client.get"
+            ]
+        },
+        {
+            "label": "Find clients",
+            "name": "findClients",
+            "description": "Returns a list of client summaries in order of descending client_id.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/clients#client.list"
+            ]
+        },
+        {
+            "label": "Create invoice",
+            "name": "createInvoice",
+            "description": "Create a new invoice complete with line items. If successful, returns the invoice_id of the newly created invoice. If you don’t specify an invoice , it will increment from the last one. You may optionally specify a different address on the invoice; otherwise the address will be pulled from your client’s details. You may optionally specify a element. If provided, users will be presented with a link to the URI when they pay the invoice.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/invoices#invoice.create"
+            ]
+        },
+        {
+            "label": "Update invoice",
+            "name": "updateInvoice",
+            "description": "Update an existing invoice with the given invoice_id. Any invoice fields left out of the request will remain unchanged. If you do not specify a element, the existing lines will remain unchanged. If you do specify elements the original ones will be replaced by the new ones.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/invoices#invoice.update"
+            ]
+        },
+        {
+            "label": "Remove invoice",
+            "name": "removeInvoice",
+            "description": "Delete an existing invoice.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/invoices#invoice.delete"
+            ]
+        },
+        {
+            "label": "Find invoice by id",
+            "name": "findInvoiceById",
+            "description": "Return the complete invoice details associated with the given invoice_id. You can use the element to provide your customers with direct links to the invoice for editing, viewing by the client and viewing by an administrator.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/invoices#invoice.get"
+            ]
+        },
+        {
+            "label": "Find invoices",
+            "name": "findInvoices",
+            "description": "Returns a list of invoice summaries. Results are ordered by descending invoice_id. ",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/invoices#invoice.list"
+            ]
+        },
+        {
+            "label": "Create recurring profile",
+            "name": "createRecurring",
+            "description": "Create a new recurring profile. The method arguments are nearly identical to invoice.create, but include few additional fields. New profiles that start today will be sent immediately. The method supports two placeholders in return_uri: Placeholder Replaced With [invoice id:: The generated invoice ID (used for invoice.get)invoice; number:: The generated invoice number (used in the user interface) These placeholders are case-sensitive.]. More information about the return_uri element is available on the blog link.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/recurring#recurring.create",
+                { "link": "http://www.freshbooks.com/blog/", "description": "blog"}
+            ]
+        },
+        {
+            "label": "Update recurring profile",
+            "name": "updateRecurring",
+            "description": "Update an existing recurring profile. For all elements but autobill, if they are supplied, they will be changed. The autobill element is optional. If it is not passed as part of the request then the recurring.update method will not modify any auto-bill information. The recurring.update method can convert a non auto-bill enabled recurring profile into an auto-bill enabled recurring profile with the inclusion of the autobill element. When updating auto-bill information, all child elements are required. An empty autobill element will turn off auto-billing on a recurring profile and delete all related information.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/recurring#recurring.update"
+            ]
+        },
+        {
+            "label": "Remove recurring profile",
+            "name": "removeRecurring",
+            "description": "Delete a recurring profile. Once deleted, it will no longer generate invoices.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/recurring#recurring.delete"
+            ]
+        },
+        {
+            "label": "Find recurring profile by id",
+            "name": "findRecurringById",
+            "description": "Return the details of an existing recurring profile, including auto-bill information if this recurring profile has auto-billing enabled.",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/recurring#recurring.get"
+            ]
+        },
+        {
+            "label": "Find recurring profiles",
+            "name": "findRecurring",
+            "description": "Returns a list of recurring profile summaries. Results are ordered by descending recurring_id. ",
+            "links":[
+                "http://www.freshbooks.com/developers/docs/recurring#recurring.list"
+            ]
+        },
+        {
+            "label": "Find currencies",
+            "name": "findCurrencies",
+            "description": "Returns a list of currently supported currencies.",
+            "links":[
+                "https://www.freshbooks.com/developers/docs/currency#currency.list"
+            ]
+        },
+        {
+            "label": "GET",
+            "name": "get",
+            "description": "Sends a GET request"
+        },
+        {
+            "label": "POST",
+            "name": "post",
+            "description": "Sends a POST request"
+        },
+        {
+            "label": "PUT",
+            "name": "put",
+            "description": "Sends a PUT request"
+        },
+        {
+            "label": "PATCH",
+            "name": "patch",
+            "description": "Sends a PATCH request"
+        },
+        {
+            "label": "DELETE",
+            "name": "delete",
+            "description": "Sends a DELETE request"
+        },
+        {
+            "label": "HEAD",
+            "name": "head",
+            "description": "Sends a HEAD request"
+        },
+        {
+            "label": "OPTIONS",
+            "name": "options",
+            "description": "Sends a OPTIONS request"
+        }
+    ],
+    "configuration":[
+        {
+            "name": "token",
+            "label": "Authentication token",
+            "description": "Unique authentication token.",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "account",
+            "label": "API URL",
+            "description": "FreshBooks URL for the account.",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "accountLabel",
+            "type": "label",
+            "visibility": "@config.account",
+            "value": "'https://'+config.account+'.freshbooks.com/api/2.1/xml-in'"
+        },
+        {
+            "name": "config",
+            "label": "Configuration",
+            "value": "Check the token and URL values inside of the 'FreshBooks API' page inside of the 'My Account' settings <a href='http://www.freshbooks.com/' target='_blank'>http://www.freshbooks.com/</a>",
+            "type": "info"
+        }
+    ]
+}
